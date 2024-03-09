@@ -7,22 +7,30 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:trinitw/resources/values/strings.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.showLoginPage});
+  final VoidCallback showLoginPage;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _userNameController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
+  Future signUp() async {
+    if (passwordMatched()) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _userNameController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+    }
+  }
+
+  bool passwordMatched() {
+    return _passwordController.text.trim() == _confirmPasswordController.text.trim();
   }
 
   @override
@@ -110,11 +118,35 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10),
 
+                // Confirm Password
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: TextField(
+                    controller: _confirmPasswordController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          // width: 2.0,
+                        ),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                        // borderSide: BorderSide(color: Colors.red),
+                      ),
+                      labelText: Strings.confirmPasswordHint,
+                    ),
+                    obscureText: true,
+                  ),
+                ),
+                const SizedBox(height: 10),
+
                 // Sign-in Button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: GestureDetector(
-                    onTap: signIn,
+                    onTap: signUp,
                     child: Container(
                       padding: const EdgeInsets.all(12.0),
                       decoration: BoxDecoration(
@@ -123,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: Center(
                         child: Text(
-                          Strings.signIn,
+                          Strings.signUp,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.onPrimary,
                             fontSize: 20.0,
@@ -139,18 +171,21 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      Strings.notAMember,
+                      Strings.alreadyAMember,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onPrimaryContainer,
                         fontSize: 16.0,
                       ),
                     ),
                     const SizedBox(width: 5.0),
-                    Text(
-                      Strings.registerNow,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontSize: 16.0,
+                    GestureDetector(
+                      onTap: widget.showLoginPage,
+                      child: Text(
+                        Strings.signInNow,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontSize: 16.0,
+                        ),
                       ),
                     ),
                   ],
