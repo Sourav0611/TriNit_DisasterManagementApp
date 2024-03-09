@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "312371631478",
+    "project_id": "tri-nitw",
+    "storage_bucket": "tri-nitw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:312371631478:android:49f6f02015e8145665d657",
+        "android_client_info": {
+          "package_name": "dev.bytebuddies.trinitw"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR2-RN98Zr6NN9lH8gb8jD6DTrm45iQcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
