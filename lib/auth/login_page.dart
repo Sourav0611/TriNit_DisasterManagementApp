@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:trinitw/resources/values/strings.dart';
 
+import 'forgot_pw_page.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, required this.showRegistrationPage});
   final VoidCallback showRegistrationPage;
@@ -107,6 +109,33 @@ class _LoginPageState extends State<LoginPage> {
                       labelText: Strings.passwordHint,
                     ),
                     obscureText: true,
+                  ),
+                ),
+                const SizedBox(height: 5),
+
+                // Forget password
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) {
+                              return ForgotPasswordPage();
+                            }),
+                          );
+                        },
+                        child: Text(
+                          Strings.forgotPassword,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 10),

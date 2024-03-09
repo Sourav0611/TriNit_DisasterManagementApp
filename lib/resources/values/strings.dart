@@ -15,4 +15,10 @@ class Strings {
   static const String alreadyAMember = "Already a member?";
   static const String signInNow = "Login now";
   static const String signUp = "Sign-up";
+  static const String forgotPassword = "Forgot password";
+  static const String resetPasswordMsg = "Enter your email and we'll send you the password reset link.";
+  static const String resetPassword = "Reset Password";
+  static const String noUserWithEmail = "Email doesn't exist in the record.";
+  static const String passwordResetLinkSent = "Password resent link set to the registered email.";
+  static const String emptyEmail = "Enter email to reset password.";
 }
