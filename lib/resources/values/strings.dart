@@ -21,4 +21,15 @@ class Strings {
   static const String noUserWithEmail = "Email doesn't exist in the record.";
   static const String passwordResetLinkSent = "Password resent link set to the registered email.";
   static const String emptyEmail = "Enter email to reset password.";
+  static const String firstName = "First name";
+  static const String lastName = "Last name";
+  static const String age = "Age";
+  static const String gender = "Gender";
+
+  static const String home = "Home";
+
+
+  static const String sos = "SOS";
+  static const String sos_help = "NEED HELP?";
+  static const String sos_tap = "TAP ON SOS BUTTON";
 }
